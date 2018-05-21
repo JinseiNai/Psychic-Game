@@ -7,7 +7,7 @@ let lossesCount = 0;
 let guessesLeft = 8;
 let guessesMade = [];
 
-// Randomly chooses a word from the array of alphabet.
+// Randomly chooses a letter from the array of alphabet.
 let randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
 console.log(randomLetter + ' is random');
 
