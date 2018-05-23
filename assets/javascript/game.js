@@ -16,7 +16,7 @@ document.onkeyup = function (event) {
     // Assigns the key the user pressed.
     let userGuess = event.key;
     console.log(userGuess);
-    
+
     // call guessChecker function.
     guessChecker(userGuess);
 
@@ -27,29 +27,30 @@ document.onkeyup = function (event) {
                 winCount++;
                 guessesMade += userGuess;
                 randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-                console.log(randomLetter  + ' is random');
+                console.log(randomLetter + ' is random');
                 guessesLeft = 8;
                 guessesMade = [];
-            } else {
+            }
+            else {
                 guessesLeft--;
                 guessesMade += userGuess;
+                if (guessesLeft === 0) {
+                    lossesCount++;
+                    guessesLeft = 8;
+                    randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+                    console.log(randomLetter + ' is random');
+                    guessesMade = [];
+                }
             }
-        } 
-        if (guessesLeft === 0) {
-            lossesCount++;
-            guessesLeft = 8;
-            randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-            console.log(randomLetter  + ' is random');
-            guessesMade = [];
         }
     }
 
-// Updates status
-let status =
-    "<p>Wins: " + winCount + "</p>" +
-    "<p>Losses: " + lossesCount + "</p>" +
-    "<p>Guesses Left: " + guessesLeft + "</p>" +
-    "<p>Your guesses so far: " + "<span class='spacing'>" + guessesMade + "</span>" + "</p>";
+    // Updates status
+    let status =
+        "<p>Wins: " + winCount + "</p>" +
+        "<p>Losses: " + lossesCount + "</p>" +
+        "<p>Guesses Left: " + guessesLeft + "</p>" +
+        "<p>Your guesses so far: " + "<span class='spacing'>" + guessesMade + "</span>" + "</p>";
 
-document.querySelector(".status").innerHTML = status;
+    document.querySelector(".status").innerHTML = status;
 };
